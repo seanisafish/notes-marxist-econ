@@ -1,0 +1,14 @@
+# ===== 派生物：由 raster.py 生成，可随时重新生成，不进版本管理 =====
+# pages/ 共 110 张 PNG，约 83.5 MB —— 排除后仓库从 84 MB 缩到约 0.5 MB
+pages/
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# ===== 系统 =====
+.DS_Store
+Thumbs.db

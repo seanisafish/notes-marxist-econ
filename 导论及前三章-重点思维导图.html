@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>《马克思主义政治经济学概论》导论及前三章 · 思维导图</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#f7f5f0;
+    --card:#ffffff;
+    --line:#e9e3d6;
+    --line-soft:#f0ece2;
+    --ink:#14171e;
+    --ink-2:#3a4256;
+    --muted:#7c7a72;
+    --primary:#2f6f5e;
+    --b1:#2f6f5e;
+    --b2:#c97b3f;
+    --b3:#b06367;
+    --b4:#5b6b7a;
+    --sans:'Outfit','Noto Sans SC',sans-serif;
+    --serif:'DM Serif Display','Noto Serif SC',serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:14.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(700px 420px at 8% -6%, rgba(47,111,94,.06), transparent 70%),
+      radial-gradient(620px 400px at 96% 4%, rgba(201,123,63,.06), transparent 70%);
+  }
+  .wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:44px 24px 72px;}
+
+  /* ---------- header ---------- */
+  header.hd{margin-bottom:28px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--primary);font-weight:600;
+    border:1px solid rgba(47,111,94,.28);background:rgba(47,111,94,.06);
+    padding:5px 12px;border-radius:999px;margin-bottom:18px;
+  }
+  h1{
+    font-family:var(--serif);font-weight:400;font-size:38px;line-height:1.2;
+    letter-spacing:-.01em;margin:0 0 10px;color:var(--ink);
+  }
+  h1 em{font-style:normal;color:var(--primary);}
+  .sub{color:var(--ink-2);font-size:15px;max-width:74ch;margin:0 0 18px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{
+    font-size:12.5px;color:var(--muted);
+    background:var(--card);border:1px solid var(--line);
+    padding:4px 11px;border-radius:8px;
+  }
+  .chip b{color:var(--ink-2);font-weight:600;}
+
+  /* ---------- toolbar ---------- */
+  .bar{
+    display:flex;flex-wrap:wrap;align-items:center;gap:8px;
+    padding:10px;border:1px solid var(--line);background:var(--card);
+    border-radius:14px;margin-bottom:14px;
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+    position:sticky;top:8px;z-index:40;
+  }
+  .btn{
+    font-family:var(--sans);font-size:13px;font-weight:500;color:var(--ink-2);
+    background:var(--bg);border:1px solid var(--line);
+    padding:6px 13px;border-radius:9px;cursor:pointer;
+    display:inline-flex;align-items:center;gap:6px;
+    transition:all .18s ease;
+  }
+  .btn:hover{background:#fff;border-color:#d9d2c2;color:var(--ink);transform:translateY(-1px);}
+  .btn.primary{background:var(--primary);border-color:var(--primary);color:#fff;}
+  .btn.primary:hover{background:#275c4d;color:#fff;}
+  .btn svg{width:14px;height:14px;}
+  .sep{width:1px;height:20px;background:var(--line);margin:0 3px;}
+  .zlabel{font-size:12px;color:var(--muted);margin-left:auto;display:flex;align-items:center;gap:6px;}
+
+  /* ---------- map ---------- */
+  .stage{
+    position:relative;background:var(--card);border:1px solid var(--line);
+    border-radius:18px;padding:8px;overflow:auto;
+    box-shadow:0 4px 16px -2px rgba(0,0,0,.06);
+    max-height:76vh;
+  }
+  #viewport{margin:0 auto;}
+  #canvas{position:relative;transform-origin:0 0;}
+  #wires{position:absolute;left:0;top:0;overflow:visible;pointer-events:none;}
+  .node{
+    position:absolute;display:flex;align-items:center;
+    border-radius:12px;padding:8px 13px;
+    font-size:13.5px;line-height:1.4;font-weight:500;
+    border:1px solid var(--line);background:#fff;color:var(--ink-2);
+    cursor:pointer;user-select:none;
+    transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+  }
+  .node:hover{transform:translateY(-1px);box-shadow:0 6px 18px -4px rgba(0,0,0,.12);border-color:#cfc7b6;z-index:5;}
+  .node .cnt{
+    font-size:10.5px;font-weight:600;color:var(--muted);
+    background:var(--line-soft);border-radius:5px;padding:1px 5px;margin-left:8px;flex:none;
+  }
+  .node.d0{
+    background:var(--primary);color:#fff;border-color:var(--primary);
+    font-family:var(--serif);font-size:18px;font-weight:500;padding:12px 18px;
+    box-shadow:0 6px 20px -4px rgba(47,111,94,.45);
+  }
+  .node.d0 .cnt{background:rgba(255,255,255,.2);color:#fff;}
+  .node.d1{font-size:14.5px;font-weight:600;}
+  .node.d2{font-size:13.5px;}
+  .node.d3{font-size:12.8px;font-weight:400;color:var(--ink-2);}
+  .node.d4{font-size:12.5px;font-weight:400;color:var(--muted);}
+  .node.collapsed::after{
+    content:"+";font-size:11px;font-weight:700;margin-left:7px;
+    color:var(--primary);opacity:.7;
+  }
+  .node.d0.collapsed::after{color:#fff;opacity:.85;}
+
+  /* ---------- detail strip ---------- */
+  .detail{
+    margin-top:14px;border:1px solid var(--line);background:var(--card);
+    border-radius:14px;padding:14px 18px;min-height:0;
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+  }
+  .detail .dt{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px;}
+  .detail .dn{font-family:var(--serif);font-size:18px;color:var(--ink);margin-bottom:6px;}
+  .detail .dd{font-size:13.8px;color:var(--ink-2);}
+  .detail .dd b{color:var(--primary);font-weight:600;}
+  .detail .dd ul{margin:8px 0 0;padding-left:18px;}
+  .detail .dd li{margin:3px 0;}
+
+  /* ---------- sections ---------- */
+  section{margin-top:52px;}
+  .sh{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+  .sh svg{width:19px;height:19px;color:var(--primary);}
+  h2{font-family:var(--serif);font-weight:400;font-size:25px;margin:0;letter-spacing:-.005em;}
+  .lead{color:var(--ink-2);max-width:76ch;margin:0 0 20px;font-size:14px;}
+
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px;}
+  #formulaGrid,#examGrid{grid-template-columns:repeat(auto-fit,minmax(400px,1fr));}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:16px 18px;box-shadow:0 2px 8px rgba(0,0,0,.04);
+  }
+  .card h3{
+    margin:0 0 10px;font-size:14.5px;font-weight:600;color:var(--primary);
+    display:flex;align-items:center;gap:7px;
+  }
+  .card h3 .dot{width:7px;height:7px;border-radius:50%;background:var(--primary);flex:none;}
+  .card ul{margin:0;padding-left:17px;font-size:13.6px;color:var(--ink-2);}
+  .card li{margin:5px 0;}
+  .card li b{color:var(--ink);font-weight:600;}
+  .formula{
+    font-family:'JetBrains Mono',ui-monospace,Consolas,monospace;
+    background:var(--line-soft);border:1px solid var(--line);
+    border-radius:8px;padding:7px 11px;font-size:13px;color:var(--ink);
+    display:block;margin:7px 0;overflow-x:auto;
+  }
+  .formula em{font-style:normal;color:var(--muted);font-size:12px;}
+  table{width:100%;border-collapse:collapse;font-size:13.4px;}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{color:var(--muted);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;}
+  td:first-child{font-weight:600;color:var(--ink);white-space:nowrap;}
+  td b{color:var(--primary);}
+  .tblwrap{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px 16px 12px;box-shadow:0 2px 8px rgba(0,0,0,.04);overflow-x:auto;}
+
+  .rail{position:absolute;left:-9999px;}
+
+  footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px;}
+
+  @media (max-width:768px){
+    .wrap{padding:28px 14px 56px;}
+    h1{font-size:29px;}
+    h2{font-size:21px;}
+    .stage{max-height:none;}
+    .bar{position:static;}
+  }
+  @media print{
+    body{background:#fff;}
+    body::before{display:none;}
+    .bar{display:none;}
+    .stage{max-height:none;overflow:visible;border:0;box-shadow:none;}
+    section{page-break-inside:avoid;margin-top:24px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hd">
+    <div class="eyebrow">马克思主义政治经济学概论 · 第二版</div>
+    <h1>导论及前三章 · <em>重点思维导图</em></h1>
+    <p class="sub">从"这门学科在研究什么"出发，沿 <b>商品 → 货币 → 市场</b> 的逻辑主线，把导论与第一至第三章的核心概念、公式与易混点收进一张可展开的导图。点击任意节点可折叠 / 展开分支。</p>
+    <div class="meta">
+      <span class="chip">教材：<b>《马克思主义政治经济学概论》（第二版）</b></span>
+      <span class="chip">马工程重点教材编写组</span>
+      <span class="chip">范围：<b>导论 + 第一篇 第一至三章</b></span>
+      <span class="chip">对应印刷页：<b>1—88 页</b></span>
+    </div>
+  </header>
+
+  <div class="bar">
+    <button class="btn primary" id="btnExpand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      展开全部
+    </button>
+    <button class="btn" id="btnCollapse">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg>
+      收起到主干
+    </button>
+    <div class="sep"></div>
+    <button class="btn" id="btnFit">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+      适应宽度
+    </button>
+    <button class="btn" id="btnZoomOut">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg>
+    </button>
+    <button class="btn" id="btnZoomIn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+    </button>
+    <div class="sep"></div>
+    <button class="btn" id="btnPrint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+      打印 / 存 PDF
+    </button>
+    <span class="zlabel">缩放 <b id="zval">100%</b></span>
+  </div>
+
+  <div class="stage" id="stage">
+    <div id="viewport">
+      <div id="canvas">
+        <svg id="wires"></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail" id="detail">
+    <div class="dt">节点说明</div>
+    <div class="dn" id="dTitle">点击导图中的任意节点</div>
+    <div class="dd" id="dBody">选中后这里会显示该知识点的展开说明、公式与辨析要点。</div>
+  </div>
+
+  <section id="sec-formula">
+    <div class="sh">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h9M18 3l3 3-3 3M17 13l3 3-3 3M8 8h5M8 12h5M8 16h4"/></svg>
+      <h2>必须背下来的公式与数量关系</h2>
+    </div>
+    <p class="lead">导论与前三章的量化考点集中在第一章商品价值量和第二章货币流通量。下面按教材表述整理，含变量含义与方向性关系。</p>
+    <div class="grid2" id="formulaGrid"></div>
+  </section>
+
+  <section id="sec-confuse">
+    <div class="sh">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg>
+      <h2>高频易混辨析</h2>
+    </div>
+    <p class="lead">这些对比是概念题最爱出刀的地方，每组都记住一句判别口诀。</p>
+    <div class="tblwrap">
+      <table id="confuseTable">
+        <thead><tr><th>对比组</th><th>一句话判别</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="sec-exam">
+    <div class="sh">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <h2>可能的考察点</h2>
+    </div>
+    <p class="lead">按章分组的命题方向，适合当自测清单反向过一遍导图。</p>
+    <div class="grid2" id="examGrid"></div>
+  </section>
+
+  <footer>
+    内容依据：《马克思主义政治经济学概论》（第二版），《马克思主义政治经济学概论》编写组编，人民出版社。导图结构对应"导论 + 第一篇（商品和货币）第一章至第三章"，覆盖印刷页 1—88 页。
+  </footer>
+</div>
+
+<script>
+/* ============ 数据（由外部脚本注入） ============ */
+const DATA = {"label": "马政导论 + 前三章", "note": "《马克思主义政治经济学概论》（第二版）——以商品 → 货币 → 市场为主线，把导论与第一至三章的骨架、公式与辨析收进一张导图。", "children": [{"label": "导论\n研究对象与方法", "note": "全书开篇，回答三件事：学科从哪来、研究什么、用什么立场和方法研究。", "children": [{"label": "第一节\n由来和演变", "children": [{"label": "名称由来\n蒙克莱田 1615", "note": "《献给国王和王太后的政治经济学》首次使用“政治经济学”；意指经济问题已超出自然经济、属国家或社会事务。", "items": ["古汉语“经济”= 经邦济世；西方 econom = 家务 + 规则", "春秋战国管仲等从社会与国家范围探讨经济问题"]}, {"label": "重商主义\n萌芽", "note": "15 世纪末—17 世纪下半叶，资产阶级最初的经济学说，研究范围主要限于流通领域，只从致富的表面现象出发，对财富和价值的来源缺乏科学理解。", "items": ["为统治者管理经济出谋划策：增进国家财富、税收、保障国民生活福利", "“这个主题就是财富”（约翰·穆勒）"]}, {"label": "重农学派\n转向生产过程", "note": "马克思：真正的现代经济科学，只是当理论研究从流通过程转向生产过程的时候才开始。", "items": ["魁奈、杜尔阁；纯产品学说、阶级学说", "局限：把范围局限于农业，认为只有农业创造财富"]}, {"label": "英国古典\n配第→斯图亚特→斯密→李嘉图", "note": "斯密《国富论》（1776）提出劳动价值论、工资论、利润论、地租论；李嘉图《政治经济学及赋税原理》（1817）把劳动价值论推到最高峰。", "items": ["李嘉图两大难题：资本与劳动的交换、等量资本获取等量利润 → 体系解体"]}, {"label": "三次综合与庸俗化", "note": "穆勒(1848) → 马歇尔(1890，新古典) → 萨缪尔森(1940s，新古典综合)；阶级矛盾尖锐化后走向庸俗阶段。", "items": ["庸俗化特征：歪曲古典科学成分、只描绘表面现象、掩盖阶级矛盾、专替资本主义辩护"]}, {"label": "马政产生的历史必然性", "note": "物质条件：18 世纪 60 年代工业革命；政治条件：英法德工人革命运动，无产阶级作为独立政治力量登上历史舞台；空想社会主义因三大局限只能停留于空想。", "items": ["空想社会主义局限：未认识社会发展规律、未认识雇佣劳动制度本质、不了解无产阶级的历史地位和使命"]}]}, {"label": "第二节\n研究对象", "children": [{"label": "出发点\n物质资料生产", "note": "恩格斯：人们首先必须吃、喝、住、穿，然后才能从事政治、科学、艺术、宗教等等。人类社会的变迁的根本原因植根于物质资料生产的发展和变革之中。", "items": ["生产的两重关系：人与自然 → 生产力（自然属性）；人与人 → 生产关系（社会属性）"]}, {"label": "生产力三要素", "note": "劳动者、劳动资料、劳动对象。劳动者是主体，在生产力诸要素中起支配作用；劳动资料是人的劳动的传导体。", "items": ["劳动资料（生产工具）是划分经济时代的标志：各种经济时代的区别，不在于生产什么，而在于怎样生产，用什么劳动资料生产", "“生产力中也包括科学”；当代科学技术日益成为最重要的推动力量"]}, {"label": "研究对象 = 生产关系", "note": "恩格斯：经济学研究的不是物，而是人和人之间的关系，归根到底是阶级和阶级之间的关系。生产过程中形成的经济关系构成经济基础，经济基础决定上层建筑。", "items": ["狭义生产关系：直接生产过程中的经济关系，主要是生产资料所有制关系", "广义生产关系：生产、分配、交换、消费四环节经济关系的有机整体；狭义生产关系的性质决定广义总和的性质"]}, {"label": "再生产四环节", "note": "生产起主导的决定性作用；分配和交换是联结生产与消费的桥梁和纽带；消费是社会再生产过程的最终目的和动力。", "items": ["生产与消费：直接同一性——生产直接是消费，消费直接是生产（劳动力再生产）", "生产与分配：要素分配先于生产、成为前提；参与生产的方式决定参与分配的形式（资本—利润利息，雇佣劳动—工资，地产—地租）", "生产与交换：没有分工就没有交换；交换范围扩大则生产规模扩大、分工更细"]}, {"label": "联系生产力与上层建筑", "note": "生产力与生产关系、经济基础与上层建筑两对基本矛盾存在于一切社会形态；经济是政治的基础，政治是经济的集中表现。", "items": ["生产力决定生产关系；生产关系适应生产力则推动生产力，不适应则成为桎梏并引发变革"]}]}, {"label": "第三节\n性质·任务·方法", "children": [{"label": "科学性与阶级性统一", "note": "唯物史观是哲学基础，剩余价值理论是基本理论原理；阶级性包含批判性和革命性。二者内在统一。", "items": ["恩格斯：科学越是毫无顾忌和大公无私，它就越符合工人的利益和愿望", "马克思一生两大发现：人类历史的发展规律（唯物史观）＋ 资本主义特殊运动规律（剩余价值理论）"]}, {"label": "任务四层", "note": "①阐明经济规律客观性 ②研究资本主义生产关系及其发展变化规律 ③研究社会主义生产关系及其发展变化规律 ④揭示经济运动的普遍规律。", "items": ["社会主义研究三“要”：探索最有利于生产力发展的生产关系具体形式；总结新中国成立以来特别是改革开放以来的经验；吸收借鉴一切有益的经济学成果"]}, {"label": "经济规律客观性", "note": "经济规律是经济现象和经济过程内在的、本质的和必然的联系，独立于人们的意识之外发挥作用；表现为重复性、普遍性和强制性。", "items": ["三大类型：最一般经济规律 / 共同发生作用的规律 / 特定社会经济形态特有规律", "自然规律（最一般）= 一切社会形态中都存在的最抽象最一般的经济规律"]}, {"label": "根本方法\n唯物辩证法", "note": "是否运用和坚持唯物辩证法，是马克思主义政治经济学与其他政治经济学在方法论上的重要区别之一。必须从客观的经济事实出发。", "items": ["基本方法：对立统一规律、量变质变规律、否定之否定规律、生产力与生产关系及经济基础与上层建筑辩证关系原理"]}, {"label": "重要方法\n科学抽象法", "note": "马克思：分析经济形式，既不能用显微镜，也不能用化学试剂。二者都必须用抽象力来代替。", "items": ["两个过程：从具体到抽象的深入研究过程 ＋ 从抽象上升到具体的逻辑叙述过程", "另有逻辑与历史相统一的方法"]}]}, {"label": "第四节\n创立和发展", "children": [{"label": "马克思\n1844→1857—58→1867", "note": "1843 年《莱茵报》转向经济关系研究；1844 年《经济学哲学手稿》为第一次尝试；1857—1858 年《经济学手稿》标志理论基本形成；1867 年《资本论》第 1 卷标志最终形成。", "items": ["《资本论》：资本和劳动的关系是全部现代社会体系所围绕旋转的轴心，这种关系在这里第一次得到了科学的说明（恩格斯）", "《伦敦笔记》24 本（1853）"]}, {"label": "列宁\n帝国主义 + 过渡理论", "note": "帝国主义就是垄断资本主义。经济和政治发展的不平衡是资本主义的绝对规律——社会主义可能首先在少数甚至单独一个资本主义国家内获得胜利。", "items": ["垄断资本主义五大特征：生产资本集中走向垄断 / 银行与工业资本融合为金融资本 / 资本输出 / 资本国际垄断同盟形成 / 列强分割世界完毕", "社会主义过渡与建设三点：发展生产力形成经济基础 / 落后国家需保留商品货币关系 / 新经济政策：商品交换、农业合作化、多种经济成分、国家资本主义"]}, {"label": "斯大林\n基本经济规律 + 工业化", "note": "1952 年《苏联社会主义经济问题》明确提出社会主义基本经济规律；承认识社会主义条件下存在商品经济，价值规律仍然发生作用。", "items": ["基本经济规律：客观性、决定生产最重要方面、贯穿全过程；目的＝最大限度满足社会增长的物质文化需要，手段＝高度技术基础上生产不断增长完善", "工业化三点：农业国建成社会主义的前提是工业化；资金靠国内积累；优先发展重工业特别是机器制造业"]}, {"label": "毛泽东思想\n中国化", "note": "新民主主义革命理论 + 过渡时期总路线 + 社会主义建设时期经济思想。", "items": ["三大经济纲领：没收封建阶级土地归农民所有，没收官僚垄断资本归新民主主义国家所有，保护民族工商业", "多种经济成分并存：国营（社会主义性质）＋合作社（半社会主义）＋私人资本主义＋个体经济＋国家资本主义", "过渡时期总路线：逐步实现社会主义工业化 + 三大改造；和平赎买改造资本主义工商业", "基本矛盾仍是生产关系与生产力、上层建筑与经济基础的矛盾"]}, {"label": "中国特色理论体系\n八项成果", "note": "邓小平理论、“三个代表”、科学发展观、习近平新时代中国特色社会主义思想构成中国特色社会主义理论体系，把马政基本原理同改革开放新实践结合。", "items": ["八项：社会主义本质与根本任务 / 社会发展阶段 / 经济体制改革 / 对外开放 / 初级阶段基本经济制度 / 初级阶段分配制度 / 经济管理与宏观调控 / 社会主义经济发展", "邓小平评价《中共中央关于经济体制改革的决定》：“写出了一个政治经济学的初稿”"]}]}, {"label": "第五节\n习近新时代中国经济思想", "note": "当代马政最新成果，是当代中国马克思主义政治经济学，集中体现并开拓了马政新境界。", "children": [{"label": "形成", "note": "党的十八大以来系统回答新时代坚持和发展什么样的中国特色社会主义、怎样坚持和发展中国特色社会主义的重大时代课题。时代课题是理论创新的驱动力。", "items": ["新时代：主要矛盾深刻变化；发展阶段、发展环境、发展条件深刻变化；国内外经济形势深刻变化"]}, {"label": "理论结晶\n16 条主线", "note": "集中统一领导 / 以人民为中心 / 新常态 / 供给侧结构性改革为经济工作主线 / 新发展理念 / 高质量发展 / 现代化经济体系 / 新发展格局 / 完善基本经济制度 / 市场决定性作用与政府作用 / 经济发展新战略 / 绿水青山 / 乡村振兴 / 稳中求进 / 统筹发展和安全 / 对外开放基本国策。", "items": ["把丰富实践上升为系统化的经济学说，形成规律性的理论认识"]}, {"label": "11 组原创贡献", "note": "观点 → 丰富发展了什么认识。", "items": ["党对经济工作的集中统一领导 → 社会主义经济本质特征", "以人民为中心 → 社会主义生产目的", "新发展理念 → 社会主义经济发展规律", "高质量发展 → 经济发展阶段性特征", "现代化经济体系 → 社会主义现代化", "供给侧结构性改革 → 社会主义宏观经济调控", "新发展格局 → 经济循环规律", "完善基本经济制度 → 基本经济制度内涵", "市场决定性作用与政府作用 → 社会主义市场经济体制", "人类命运共同体 → 经济全球化和对外开放", "稳中求进 → 国家治理规律"]}, {"label": "实践中坚持发展", "note": "从高速增长向高质量发展的历史转变；2020 年经济总量近上百万亿元新台阶，占世界经济约 17%；基本医保覆盖超 13 亿人、养老近 10 亿人。", "items": ["定位：是推动经济社会健康发展的科学指南，是应对重大风险挑战的强大思想武器", "对西方经济学：去粗取精、去伪存真、以我为主、为我所用；西方意识形态色彩内容不能照抄照搬"]}]}]}, {"label": "第一章\n商品", "note": "商品是市场经济的元素形式，体现了商品生产和交换中的生产关系——马政研究市场经济从分析商品开始。", "children": [{"label": "第一节\n商品及其内在矛盾", "children": [{"label": "商品二因素", "note": "商品是用来交换的劳动产品，包含使用价值和价值两个要素，是二者的统一。", "items": ["使用价值：由自然属性决定，是交换价值的物质承担者；不体现特定社会经济关系", "交换价值：一种使用价值与另一种使用价值相交换的数量关系或比例", "价值：无差别的一般人类劳动的凝结，客观、高度抽象的范畴，以分工为基础", "统一与矛盾：生产者为取得价值让渡使用价值，购买者为获得使用价值支付价值，二者在交换中作相反运动"]}, {"label": "劳动二重性\n理解政治经济学的枢纽", "note": "生产商品的同一劳动可从具体与抽象两方面考察，对立统一、不可分割。", "items": ["具体劳动：特殊的有一定目的的形式上的耗费 → 生产使用价值（劳动的自然属性）", "抽象劳动：生理学意义上的耗费、无差别一般人类劳动 → 形成商品价值（劳动的社会属性）", "抽象劳动是形成商品价值的唯一源泉；商品的交换本质上是等量抽象劳动相交换"]}, {"label": "私人劳动\n社会劳动", "note": "商品经济的基本矛盾，存在于商品经济发展的一切阶段。资本主义条件下表现为生产社会化与生产资料资本主义私人占有的矛盾。", "items": ["转化的两个条件：①必须作为有用劳动满足社会需要 ②必须能与任何其他有用私人劳动作等量劳动交换", "转化必须经过市场交换；不被市场接受则劳动耗费得不到补偿，生产者可能破产"]}, {"label": "拜物教性质", "note": "把人们之间的社会关系虚幻为物与物的关系。来源不是使用价值，也不是抽象劳动，而是劳动产品取得商品形态后私人劳动与社会劳动发生了分离。", "items": ["人与物的关系发生颠倒：物的关系成为支配生产者命运的关系", "马克思：只有进入交换，商品才具有商品性"]}]}, {"label": "第二节\n商品价值量", "children": [{"label": "社会必要劳动时间\n两重含义", "note": "在现有社会正常生产条件下、社会平均劳动熟练程度和强度下，制造某种使用价值所需要的劳动时间。商品价值量只能由它决定。", "items": ["第一义：制造某种使用价值所需的社会必要劳动时间 → 决定商品价值量", "第二义：由社会生产和生活需要最终决定、并由有支付能力的市场需求直接决定的应投入生产的劳动量 → 决定商品价值量的实现程度", "个别劳动时间由个别劳动生产率决定；劳动效率越高，个别劳动时间越少"]}, {"label": "简单劳动\n复杂劳动", "note": "简单劳动不经过专门训练和学习就能胜任；复杂劳动需专门训练和技术专长。换算比例由社会过程决定，在反复的市场交换实践中自发形成。", "items": ["复杂劳动 = 自乘的（或不如说多倍的）简单劳动；少量的复杂劳动等于多量的简单劳动", "相对性：过去的复杂劳动可能是现在的简单劳动"]}, {"label": "劳动生产率\n与价值量", "note": "劳动生产率同商品的使用价值量成正比，同单位商品的价值量成反比。", "items": ["两种表示：单位劳动时间生产的商品数量（越大越高）／生产单位商品耗费的劳动时间（越小越高）", "价值总量在同一劳动时间内不变（鞋子算例：10 小时 = 20 双 × 0.5 小时）", "个别价值 < 社会价值 → 仍按社会价值出售 → 获得高于个别价值的收益", "五个决定因素：劳动者熟练程度 / 科学技术水平 / 生产过程社会结合 / 劳动对象状况 / 自然条件"]}]}, {"label": "第三节\n劳动价值论的深化", "children": [{"label": "当代劳动形式\n新变化", "note": "①脑力劳动占比上升、体力劳动占比下降 ②非物质生产领域劳动重要性上升 ③参与价值创造的劳动范围拓宽。", "items": ["发达国家第三产业产值约占 GDP 的 60%—70%，就业比重甚至高达 80%"]}, {"label": "劳动价值论\n新认识", "note": "劳动价值论适用范围拓展，非被推翻——商品生产与商品交换仍是社会经济行为的普遍而必然形式。", "items": ["科技劳动：具有高度创造性的复杂劳动，越来越起主导作用", "管理劳动：指挥生产与维护、完善所有制双重性；作为后者本身并不创造新价值", "服务劳动与精神劳动：科学、文化、教育、艺术、卫生、信息及咨询服务", "总体工人：创造价值的劳动是总体劳动，含直接与间接生产劳动，概念必然扩大"]}, {"label": "四种对立观点", "note": "教材逐一反驳的四种非劳动价值论。", "items": ["生产费用论：无法解释生产费用的价值决定问题，陷入循环论证", "要素价值论：混淆物化劳动与活劳动、要素与要素所有权的界限", "自动化生产创造价值论：机器人本身不创造价值，其创造的价值实体上仍是科技劳动者的抽象劳动", "知识价值论：知识本身不能直接创造新价值，只有产生和运用知识的活劳动才创造新价值"]}]}]}, {"label": "第二章\n货币", "note": "货币是商品生产者之间社会生产关系的体现，投放必须遵循货币流通量规律。", "children": [{"label": "第一节\n本质和职能", "children": [{"label": "价值形式\n四阶段", "note": "简单（个别、偶然）→ 总和（扩大）→ 一般 → 货币形式。", "items": ["简单价值形式：1 只绵羊 = 2 把斧子（产品交换，非真正商品交换）", "相对价值形式在等式左边、处于主动地位；等价形式在右边、处于被动地位", "等价形式三特征：使用价值成为价值的表现形式 / 具体劳动成为抽象劳动的表现形式 / 私人劳动成为直接形式的社会劳动", "扩大价值形式：价值表现更充分，但缺乏共同标准、交换困难 → 一般价值形式 → 一般等价物出现", "货币形式：一般价值形式的完成形态，金银因自然属性最适合充当货币材料"]}, {"label": "货币本质", "note": "从商品世界中游离出来固定地充当一般等价物的特殊商品，是社会劳动的化身，成为社会财富的一般代表，体现商品生产者之间的社会生产关系。", "items": ["马克思：金银天然不是货币，但货币天然是金银", "货币出现克服物物交换困难，也使商品世界分裂为对立两极"]}, {"label": "五大职能", "note": "价值尺度与流通手段是最基本职能，由此派生贮藏手段、支付手段、世界货币。", "items": ["价值尺度：只需观念上的货币；商品价值表现在货币上即价格", "价格标准：为执行价值尺度职能派生的技术规定，最终与货币实际重量分离（人民币“元、角、分”）", "流通手段：需要现实存在的货币；W—G—W，马克思称 W—G 的实现为“危险的跳跃”", "贮藏手段：货币退出流通领域，金属货币下起调节流通量的“蓄水池”作用，纸币条件下丧失", "支付手段：清偿债务与支付赋税租金利息工资；三个条件——购买力不降低、支付一定利息、确保到期偿还", "世界货币：国内职能的国际延伸，必须以足值的金或银充当"]}]}, {"label": "第二节\n货币的形式", "children": [{"label": "金属货币\n纸币\n信用货币", "note": "货币形式的演化路径。", "items": ["金属货币：自然条块 → 私人铸币 → 国家铸币 → 辅币；印记含形状、花纹、文字（布币、刀币、圆钱）", "纸币：国家发行、靠国家权力强制，本身没有价值或价值可忽略，在流通手段与支付手段中起价值符号作用", "信用货币：银行券、支票存款、电子货币；电子货币不是新货币，只是传统货币电子化"]}, {"label": "货币层次\nM0—M3 / M0—M2", "note": "划分依据是流动性大小（资产转换为现金或支票存款的能力），不是数量多少。", "items": ["IMF：M0 现金；M1 狭义 = M0 + 可转让本币存款和国内可直接支付的外币存款；M2 = M1 + 三个月至一年定期与储蓄存款等准货币；M3 = M2 + 外汇定期存款、商业票据等", "我国：M0 本市流通现金；M1 狭义 = M0 + 能开支票支付的单位活期存款；M2 广义 = M1 + 准货币（居民储蓄、单位定期、其他存款）"]}]}, {"label": "第三节\n流通量及其规律", "children": [{"label": "货币流通量规律", "note": "货币流通同商品流通相适应的规律：流通中的货币量必须满足商品流通的需要。", "items": ["基本公式：所需货币量 = 流通中商品价格总额 ÷ 同一货币单位的平均流通速度", "算例：400 亿元 ÷ 10 次 = 40 亿元", "修正项：− 赊销商品价格总额 ＋ 到期支付总额 − 互相抵消支付总额", "贮藏手段职能：流通中货币过多时退出、不足时投入"]}, {"label": "纸币与信用货币\n流通量规律", "note": "纸币发行量必须限于流通中所需要的金属货币量；流通纸币总量必须同它所代表的金属货币流通量相等。信用货币供给量只限于它象征性代表的需求量。", "items": ["单位纸币所代表的金属货币量 = 流通中所需要的金属货币量 ÷ 流通中的纸币总额（算例：10 亿 ÷ 20 亿 = 0.5 元）", "供给 > 需求 → 贬值、通货膨胀；供给 < 需求 → 升值、通货紧缩"]}, {"label": "通胀与通缩", "note": "通货膨胀：由于货币发行量超过流通中实际需要的货币量而引起的物价总水平持续上涨。通货紧缩：一般物价水平持续下降。二者本质上都是违背货币流通量规律的结果。", "items": ["信用货币流通还可能产生支付危机，严重时引起经济和社会的动荡", "对货币数量论的评析：反映的是表面现象，并没有阐明货币流通的本质"]}]}]}, {"label": "第三章\n市场经济和价值规律", "note": "回答“市场经济为什么能配置资源、靠什么规律运行”，并落到市场体系与市场秩序的制度条件。", "children": [{"label": "第一节\n市场经济", "children": [{"label": "自然经济\n商品经济", "note": "自然经济：自给自足，生产直接满足生产者自身需要而非用于交换，封闭保守、分散孤立。商品经济：商品生产和商品交换的统称。", "items": ["商品经济前提条件：社会分工；必要条件：生产资料归不同所有者所有", "三次社会大分工：畜牧业从农业分离 → 手工业从农业分离（出现直接以交换为目的的生产）→ 商品流通从商品生产中分离", "两个阶段：简单商品经济（小商品经济）→ 市场经济；市场在全社会资源配置中起决定性作用即为分界线", "商品经济四个特征：突破自然经济界限 / 独立自主经营与独立经济利益 / 以等价交换为基础 / 竞争性"]}, {"label": "市场经济\n六大特征", "note": "市场经济是发达的商品经济，除商品经济一般特征外的六个新特征。", "items": ["①市场在资源配置中起决定性作用 ②企业是市场主体（自主经营、自负盈亏）③生产要素的市场配置 ④法治和信用成为交换关系的基础 ⑤经济的开放性 ⑥国家调节的重要性", "企业产权制度基本特征：归属清晰、权责明确、保护严格、流转顺畅"]}, {"label": "市场机制\n四机制", "note": "通过供求和价格变动、市场竞争、风险约束等途径调节经济运行和实现资源配置的作用过程。", "items": ["价格机制（核心）：价格上涨说明供不应求，下跌说明供过于求", "供求机制：调节价格、调节方向与规模、调节结构、促进时间上平衡", "竞争机制：卖者之间、买者之间、买卖之间、不同部门之间（由比价变动引导资源转移）", "风险机制：含利益刺激与获利约束，正常情况下获利大小与风险大小正相关"]}]}, {"label": "第二节\n价值规律", "children": [{"label": "价值规律内容", "note": "商品经济的基本规律。既是价值决定的规律，又是价值实现的规律；既调节商品生产，又调节商品交换。", "items": ["商品的价值量由生产商品的社会必要劳动时间决定", "不同商品的交换按照等价原则进行", "通过商品供求关系、商品生产者之间的竞争关系等一系列中介机制，左右价格变动、调节资源配置"]}, {"label": "微观作用\n优胜劣汰", "note": "个别价值 < 社会价值者获较多货币收入且有压价竞争空间；= 者获平均收入；> 者获较少收入并面临破产倒闭威胁。", "items": ["促使生产者不断技术创新、改进生产组织和管理，资源转向高效率生产者", "全社会的资源利用效率得到提高"]}, {"label": "宏观作用\n分配社会劳动", "note": "任何社会形态都必须按社会需要把有限的劳动力和其他资源合理分配到社会生产的各个部门；在商品经济中通过价值规律的作用实现。", "items": ["资源配置的核心是合理分配由一定时期劳动人口数量决定的社会总劳动时间"]}, {"label": "三大制约因素", "note": "①市场信息的真实性 ②市场信息的充分性 ③市场活动的竞争性。", "items": ["信息失真 → 价格高估或低估、与价值过度背离 → 价值只能以破坏性方式恢复合理比例", "信息不充分 → 长周期投资决策带盲目性 → 供求长期性或结构性失衡", "竞争性：过度或恶性竞争破坏正常交换关系；资本主义下自由竞争结果必然是垄断 → 需反垄断立法和政府干预"]}, {"label": "作用范围\n与边界", "note": "作用范围不是无限的而是有边界的。", "items": ["商品生产和交换领域之外调节有限：自然资源开发与土地规划、生态环境、公共性强的国家经济安全与社会保障领域", "超出边界的过度商品化和市场化会引发经济社会危机", "因此现代市场经济还需要政府的必要干预和调节，以维护价值规律正常发挥作用的社会经济条件"]}]}, {"label": "第三节\n市场体系和市场秩序", "children": [{"label": "市场体系\n五种分类", "note": "相互联系、相互补充的各级各类市场的总和，是市场调节资源配置的前提。", "items": ["按交易对象：商品市场（消费资料 / 生产资料）＋ 生产要素市场", "按空间范围：区域性 / 全国性 / 国际市场", "按流通环节：批发市场 / 零售市场", "按交易方式：现货 / 远期 / 期货交易市场", "按客体存在形态：物质产品市场 / 服务市场"]}, {"label": "生产要素市场\n五大构成", "note": "没有发达的生产要素市场，市场机制在资源配置中的决定性作用就不可能实现。", "items": ["金融市场：货币资金融通与交易；资本市场（一年以上，证券市场）与货币市场（短期）；直接融资与间接融资", "劳动力市场：供求由市场机制决定，工资 ↑ → 劳动力供给 ↑", "土地市场：土地交易市场（所有权）与土地租赁市场（使用权）；我国为土地使用权出让和转让", "技术市场：技术商品交易，三种方式——知识产权转让、技术咨询培训、实物样机样品交易", "信息市场：信息服务与咨询、信息转让；价格受获取难易程度与使用经济效益影响"]}, {"label": "市场秩序\n规则 + 管理", "note": "市场秩序是市场运行中必须遵循的各种行为准则和行为规范的总称，是保证价值规律发挥作用和市场有序运行的根本条件。", "items": ["四类市场规则：市场进出规则 / 市场竞争规则 / 市场交易规则 / 市场仲裁规则", "市场管理两部分：组织机构（国家专门机构、技术管理机构、社会性及群众性管理机构）＋ 市场监管体系（行政执法、行业自律、舆论监督、群众参与）", "四点意义：促进市场机制正常发挥 / 有利于国家宏观调控 / 增强企业活力并形成统一市场 / 畅通经济双循环的必要条件"]}]}]}], "formulas": [{"title": "第一章 · 商品价值量", "items": ["商品价值量 = 凝结在商品中的无差别的一般人类劳动量 = 一定的劳动时间", "单位商品价值量 = 生产该商品的社会必要劳动时间", "劳动生产率 ↑ → 使用价值量 ↑ ／ 单位商品价值量 ↓", "价值总量（同一劳动时间内）= 单位商品价值量 × 商品数量", "复杂劳动 = 自乘的（或不如说多倍的）简单劳动", "个别价值 &lt; 社会价值 → 仍按社会价值出售 → 超额收益"], "note": "⚠ 教材原文为“劳动生产率同商品的使用价值量成正比，同单位商品的价值量成反比”。“单位商品价值量与社会劳动生产率成正比”这一通行说法在本章图片中未出现，勿混用。"}, {"title": "第二章 · 货币流通量", "items": ["所需货币量 = 流通中商品价格总额 ÷ 同一货币单位的平均流通速度（次数）", "修正式：所需货币量 =（商品价格总额 − 赊销商品价格总额 ＋ 到期支付总额 − 互相抵消支付总额）÷ 同一货币单位的平均流通速度", "单位纸币代表的金属货币量 = 流通中所需要的金属货币量 ÷ 流通中的纸币总额", "商品价格 ∝ 商品价值，商品价格 ∝ 1 / 货币价值"], "note": "算例：400 亿元 ÷ 10 次 = 40 亿元；10 亿元需求 ÷ 20 亿元发行 = 1 元纸币只代表 0.5 元金币。教材未出现“实际/名义货币流通量”与“纸币周转次数”这类表述。"}, {"title": "导论 · 结构性关系", "items": ["生产力 = 劳动者 + 劳动资料 + 劳动对象", "生产资料 = 劳动资料（生产工具）+ 劳动对象", "社会再生产 = 生产 + 分配 + 交换 + 消费", "广义生产关系 = 狭义生产关系 + 分配、交换、消费各环节的关系", "经济基础 = 生产关系的总和 → 决定 → 上层建筑"], "note": "狭义生产关系的性质，决定广义生产关系总和的性质；生产在四环节中起主导的决定性作用。"}, {"title": "第三章 · 方向性关系", "items": ["价值决定价格：社会必要劳动时间 ↑ → 商品价值量 ↑", "价格 ↑ ⇔ 供不应求；价格 ↓ ⇔ 供过于求", "商品按社会价值交换；供求一致时按市场价格出售", "个别价值 &lt; 社会价值 → 多收入；= → 平均收入；&gt; → 少收入并濒临破产", "获利大小 ∝ 风险大小；工资 ↑ → 劳动力供给 ↑"], "note": "本章无数学公式，只有定性方向性关系。教材未使用“供求规律”这一概念，相关内容以“供求机制”出现。"}], "confuse": [{"a": "使用价值 vs 价值", "b": "使用价值由自然属性决定、不体现特定社会经济关系；价值是无差别一般人类劳动的凝结、以分工为基础。"}, {"a": "具体劳动 vs 抽象劳动", "b": "具体劳动生产使用价值，是劳动的自然属性；抽象劳动形成价值，是劳动的社会属性。二者是同一劳动的不可分割两个方面。"}, {"a": "私人劳动 vs 社会劳动", "b": "前者源于生产资料私有和独立经济利益；后者源于社会分工与相互依赖。二者矛盾是商品经济的基本矛盾。"}, {"a": "简单劳动 vs 复杂劳动", "b": "简单劳动不需专门训练即可胜任；复杂劳动需专门训练并具技术专长。换算比例由社会过程自发形成，且是相对的。"}, {"a": "劳动生产率↑ 对价值量 vs 价值总量", "b": "对单位商品价值量是反向的（越小）；对同一劳动时间内的价值总量是不变的（同量）。"}, {"a": "价值尺度 vs 流通手段 vs 支付手段", "b": "价值尺度只需观念上的货币；流通手段需要现实货币、买卖同时完成；支付手段用于清偿债务、时间与交付分离。"}, {"a": "贮藏手段 vs 支付手段", "b": "贮藏靠“退出流通领域”；支付靠“延后支付债务”。"}, {"a": "金属货币 vs 纸币 vs 信用货币", "b": "金属货币本身有价值，靠贮藏“蓄水池”自动调节；纸币本身无价值、靠国家强制与信誉；信用货币依托银行信用。"}, {"a": "货币流通量 vs 货币发行量", "b": "前者是市场实际流通的货币量，由价格总额与流通速度决定；后者是国家投放出去的数量。"}, {"a": "通胀 vs 通缩", "b": "通胀是发行量超过实际需要引起物价总水平持续上涨；通缩是物价总水平持续下降。二者本质上都是违背货币流通量规律的结果。"}, {"a": "自然经济 vs 商品经济 vs 市场经济", "b": "自然经济自给自足、封闭保守；商品经济以社会分工（前提）与生产资料归不同所有者所有（必要条件）为条件；市场经济是发达的商品经济。"}, {"a": "价值 vs 价格 vs 供求", "b": "价值由社会必要劳动时间决定；价格是价值的货币表现；供求不是价值的决定因素，而是通过价格起作用的传导机制。"}, {"a": "市场体系 vs 市场秩序", "b": "体系是“硬件”，回答“有没有市场”；秩序是“软件”，回答“市场按什么规则运行”，是价值规律正常发挥的根本条件。"}, {"a": "等价交换 vs 竞争关系", "b": "等价交换提供平等前提；竞争是市场活动的灵魂，是价值规律产生激励创新与优胜劣汰作用的机制。"}, {"a": "狭义 vs 广义生产关系", "b": "狭义指直接生产过程中的经济关系（主要是所有制）；广义指再生产四环节的经济关系整体。狭义性质决定广义总和性质。"}, {"a": "唯物辩证法 vs 科学抽象法", "b": "前者是根本方法，是马政与其他政治经济学在方法论上的重要区别；后者是重要方法，含“从具体到抽象”与“从抽象上升到具体”两个过程。"}], "exam": [{"title": "导论 · 6 题", "items": ["试述马克思主义政治经济学的研究对象。", "为什么说马克思主义政治经济学是科学性和阶级性的统一？", "请谈谈对经济规律客观性的认识。", "如何认识马克思主义政治经济学的研究方法？", "试述中国特色社会主义政治经济学对马克思主义政治经济学的丰富和发展。", "习近平新时代中国特色社会主义经济思想的原创性贡献表现在哪些方面？"]}, {"title": "第一章 · 6 题", "items": ["解释概念：商品、使用价值、价值、具体劳动、抽象劳动、商品的拜物教性质、社会必要劳动时间。", "如何理解使用价值、交换价值、价值三者之间的关系？", "什么是生产商品的劳动二重性？为什么说是“理解政治经济学的枢纽”？", "简述私人劳动和社会劳动的矛盾是商品经济的基本矛盾。", "商品价值量是如何决定的？价值量与劳动生产率的关系如何？", "当代劳动形式发生了哪些新变化？对劳动和劳动价值论的新认识有哪些？"]}, {"title": "第二章 · 5 题", "items": ["解释货币、纸币、通货膨胀、通货紧缩。", "简述货币的起源和本质。", "简述货币的职能。", "简述货币形式的发展。", "简述货币流通量规律的内容。"]}, {"title": "第三章 · 4 题", "items": ["解释自然经济、商品经济、市场机制、价值规律、市场体系。", "市场经济有哪些基本特征？", "简述价值规律的作用及其局限性。", "简述建立和规范市场秩序的重要意义。"]}]};
+
+/* ============ 工具 ============ */
+const COLORS = ['#2f6f5e','#c97b3f','#b06367','#5b6b7a'];
+const HGAP = 34, VGAP = 12, PADX = 26, MINW = 88, MAXW = 230;
+const LINE_H = 19;
+
+const measurer = document.createElement('canvas').getContext('2d');
+function textWidth(t, font){
+  measurer.font = font;
+  return measurer.measureText(t).width;
+}
+function wrap(text, font, max){
+  measurer.font = font;
+  const out = [];
+  let cur = '';
+  for (const ch of text){
+    if (measurer.measureText(cur + ch).width > max && cur){
+      out.push(cur); cur = ch;
+    } else cur += ch;
+  }
+  if (cur) out.push(cur);
+  return out;
+}
+function isCJK(ch){ return /[\u3400-\u9fff\uff00-\uffef]/.test(ch); }
+
+/* ============ 树构建 ============ */
+let NODES = [];
+function build(raw, depth, parent, color){
+  const n = {
+    label: raw.label, note: raw.note || '', detail: raw.detail || '',
+    items: raw.items || [], depth, parent, color,
+    children: (raw.children || []).map(c => build(c, depth + 1, null, color)),
+    open: depth < 2
+  };
+  n.children.forEach(c => c.parent = n);
+  return n;
+}
+
+function computeSize(n){
+  const font = n.depth === 0 ? '500 18px "Outfit","Noto Sans SC",sans-serif'
+              : n.depth === 1 ? '600 14.5px "Outfit","Noto Sans SC",sans-serif'
+              : n.depth === 2 ? '500 13.5px "Outfit","Noto Sans SC",sans-serif'
+              : '400 12.8px "Outfit","Noto Sans SC",sans-serif';
+  n.font = font;
+  const inner = MAXW - PADX;
+  const lines = wrap(n.label, font, inner);
+  n.lines = lines;
+  n.w = Math.max(MINW, Math.min(MAXW, Math.max(...lines.map(l => textWidth(l, font))) + PADX));
+  n.h = Math.max(38, lines.length * LINE_H + 16);
+  n.children.forEach(computeSize);
+}
+
+function layout(root){
+  let cursorY = 0;
+  let maxX = 0, maxY = 0;
+  function place(n, x){
+    n.x = x;
+    const kids = n.open ? n.children : [];
+    if (!kids.length){
+      n.y = cursorY + n.h / 2;
+      cursorY += n.h + VGAP;
+    } else {
+      const cx = x + n.w + HGAP;
+      kids.forEach(k => place(k, cx));
+      n.y = (kids[0].y + kids[kids.length - 1].y) / 2;
+    }
+    maxX = Math.max(maxX, n.x + n.w);
+    maxY = Math.max(maxY, n.y + n.h / 2);
+  }
+  place(root, 0);
+  return { w: maxX + 40, h: maxY + 40 };
+}
+
+/* ============ 渲染 ============ */
+const stage = document.getElementById('stage');
+const viewport = document.getElementById('viewport');
+const canvas = document.getElementById('canvas');
+const wires = document.getElementById('wires');
+let root = null, zoom = 1, lastSize = {w:0,h:0};
+
+function visibleNodes(n, acc){
+  acc.push(n);
+  if (n.open) n.children.forEach(c => visibleNodes(c, acc));
+  return acc;
+}
+
+function render(){
+  const size = layout(root);
+  const list = visibleNodes(root, []);
+
+  // wires
+  wires.setAttribute('width', size.w);
+  wires.setAttribute('height', size.h);
+  wires.innerHTML = '';
+  list.forEach(n => {
+    if (!n.parent || !n.parent.open) return;
+    const p = n.parent;
+    const x1 = p.x + p.w, y1 = p.y, x2 = n.x, y2 = n.y;
+    const mx = (x1 + x2) / 2;
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d', `M ${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`);
+    path.setAttribute('fill','none');
+    path.setAttribute('stroke', n.depth === 1 ? n.color : 'rgba(58,66,86,.28)');
+    path.setAttribute('stroke-width', n.depth === 1 ? 2 : 1.3);
+    path.setAttribute('opacity', n.depth === 1 ? '.55' : '1');
+    wires.appendChild(path);
+  });
+
+  // nodes
+  canvas.querySelectorAll('.node').forEach(el => el.remove());
+  list.forEach(n => {
+    const el = document.createElement('div');
+    el.className = 'node d' + n.depth + (n.children.length && !n.open ? ' collapsed' : '');
+    if (n.depth === 1) { el.style.borderColor = n.color + '66'; el.style.background = n.color + '12'; el.style.color = n.color; }
+    el.style.left = n.x + 'px';
+    el.style.top = (n.y - n.h / 2) + 'px';
+    el.style.width = n.w + 'px';
+    el.style.minHeight = n.h + 'px';
+    el.style.whiteSpace = 'pre';
+    el.innerHTML = n.label.replace(/\n/g,'<br>') +
+      (n.children.length ? `<span class="cnt">${n.children.length}</span>` : '');
+    el.addEventListener('click', ev => {
+      ev.stopPropagation();
+      if (n.children.length) { n.open = !n.open; render(); }
+      showDetail(n);
+    });
+    canvas.appendChild(el);
+  });
+
+  canvas.style.width = size.w + 'px';
+  canvas.style.height = size.h + 'px';
+  lastSize = size;
+  applyZoom();
+}
+
+function applyZoom(){
+  canvas.style.transform = `scale(${zoom})`;
+  viewport.style.width = (lastSize.w * zoom) + 'px';
+  viewport.style.height = (lastSize.h * zoom) + 'px';
+  document.getElementById('zval').textContent = Math.round(zoom * 100) + '%';
+}
+
+function fit(){
+  const size = layout(root);
+  const availW = stage.clientWidth - 28;
+  const availH = stage.clientHeight - 28;
+  let z = availW / size.w;
+  if (availH > 0 && size.h > 0) z = Math.min(z, availH / size.h);
+  zoom = Math.max(.3, Math.min(1.5, z));
+  lastSize = size;
+  applyZoom();
+  stage.scrollLeft = 0;
+}
+
+/* ============ 详情 ============ */
+function showDetail(n){
+  document.getElementById('dTitle').textContent = n.label.replace(/\n/g,' ');
+  const body = document.getElementById('dBody');
+  let html = '';
+  if (n.note) html += `<p style="margin:0 0 6px">${n.note}</p>`;
+  if (n.items && n.items.length){
+    html += '<ul>' + n.items.map(i => `<li>${i}</li>`).join('') + '</ul>';
+  }
+  if (n.detail) html += `<p style="margin:8px 0 0;color:var(--muted);font-size:13px">${n.detail}</p>`;
+  body.innerHTML = html || '<span style="color:var(--muted)">该节点暂无补充说明。</span>';
+}
+
+/* ============ 控件 ============ */
+document.getElementById('btnExpand').addEventListener('click', () => {
+  (function walk(n){ n.open = true; n.children.forEach(walk); })(root);
+  render(); fit();
+});
+document.getElementById('btnCollapse').addEventListener('click', () => {
+  (function walk(n){ n.open = n.depth < 2; n.children.forEach(walk); })(root);
+  render(); fit();
+});
+document.getElementById('btnFit').addEventListener('click', fit);
+document.getElementById('btnZoomIn').addEventListener('click', () => { zoom = Math.min(1.8, zoom + .15); applyZoom(); });
+document.getElementById('btnZoomOut').addEventListener('click', () => { zoom = Math.max(.3, zoom - .15); applyZoom(); });
+document.getElementById('btnPrint').addEventListener('click', () => {
+  (function walk(n){ n.open = true; n.children.forEach(walk); })(root);
+  render(); setTimeout(() => window.print(), 250);
+});
+window.addEventListener('resize', () => { if (zoom < 1) fit(); });
+
+/* ============ 启动 ============ */
+function init(){
+  root = build(DATA, 0, null, COLORS[0]);
+  (root.children || []).forEach((c, i) => {
+    const col = COLORS[i % COLORS.length];
+    (function paint(n){ n.color = col; n.children.forEach(paint); })(c);
+  });
+  computeSize(root);
+  render();
+  fit();
+  showDetail(root);
+  buildSections();
+}
+function buildSections(){
+  const fg = document.getElementById('formulaGrid');
+  const formulas = (DATA.formulas || []).map(f => `
+    <div class="card">
+      <h3><span class="dot"></span>${f.title}</h3>
+      ${(f.items || []).map(i => `<span class="formula">${i}</span>`).join('')}
+      ${f.note ? `<div style="font-size:13px;color:var(--muted);margin-top:8px">${f.note}</div>` : ''}
+    </div>`).join('');
+  fg.innerHTML = formulas;
+
+  const tb = document.querySelector('#confuseTable tbody');
+  tb.innerHTML = (DATA.confuse || []).map(c => `<tr><td>${c.a}</td><td>${c.b}</td></tr>`).join('');
+
+  const eg = document.getElementById('examGrid');
+  eg.innerHTML = (DATA.exam || []).map(g => `
+    <div class="card">
+      <h3><span class="dot"></span>${g.title}</h3>
+      <ul>${(g.items || []).map(i => `<li>${i}</li>`).join('')}</ul>
+    </div>`).join('');
+}
+init();
+</script>
+</body>
+</html>
